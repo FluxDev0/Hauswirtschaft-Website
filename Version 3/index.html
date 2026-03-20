@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planet Health Diet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>Planet Health Diet</header>
+
+<nav>
+  <button onclick="showTab('home')" id="btn-home" class="glass">Home</button>
+  <button onclick="showTab('info')" id="btn-info" class="glass">Was ist das?</button>
+  <button onclick="showTab('foods')" id="btn-foods" class="glass">Lebensmittel</button>
+  <button onclick="showTab('quiz')" id="btn-quiz" class="glass">Quiz</button>
+</nav>
+
+<div class="info glass" id="content"></div>
+
+<div class="content glass" style="padding: 0px;">
+  <canvas onclick="piechart()"  id="pieChart" width="300" height="300" class="piechart"> </canvas>
+</div>
+
+<div class="background">
+  <div class="blob blob1 anim3"></div>
+  <div class="blob blob2 anim2"></div>
+  <div class="blob blob3 anim1"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
