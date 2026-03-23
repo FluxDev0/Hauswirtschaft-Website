@@ -5,9 +5,6 @@ const content = document.getElementById("content");
 const html = document.innerHTML;
 
 function showTab(tab) {
-  document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
-  document.getElementById("btn-" + tab).classList.add("active");
-
   if (tab === "home") {
     content.innerHTML = `
       <p>Die Planet Health Diet ist gut für dich und die Umwelt.</p>
@@ -44,11 +41,16 @@ function showTab(tab) {
     content.innerHTML = `
       <h2>Quiz</h2>
       <p>Ist viel Fleisch gut?</p>
-      <button onclick="answer(false)">Ja</button>
-      <button onclick="answer(true)">Nein</button>
+      <button class="glass" onclick="answer(false)">Ja</button>
+      <button class="glass" onclick="answer(true)">Nein</button>
       <p id="result"></p>
     `;
   }
+}
+
+function switch_active(tab, nav_name) {
+  document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("active"));
+  document.getElementById(nav_name + "-" + tab).classList.add("active");
 }
 
 function answer(correct) {
@@ -82,7 +84,21 @@ function show_piechart(data) {
   });
 }
 
-// Daten für das Pie Chart
+document.querySelectorAll(".continent").forEach(box => {
+  box.addEventListener("click", function() {
+    document.querySelectorAll(".continent").forEach(b => b.classList.remove("active"));
+    this.classList.add("active");
+    show_piechart()
+  });
+});
+
+document.querySelectorAll(".mnav").forEach(box => {
+  box.addEventListener("click", function() {
+    document.querySelectorAll(".mnav").forEach(b => b.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+
 const phd = [
   { value: 300, color: "#4CAF50", label: "Gemüse" },
   { value: 250, color: "#FF9800", label: "Milchprodukte" },
