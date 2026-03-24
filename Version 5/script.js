@@ -79,7 +79,7 @@ function showTab(tab) {
         <button onclick="show_barchart(europe)" class="glass continent">Europa</button>
       </nav>
 
-      <div class="content glass" id="barChartContainer" style="padding: 0px;"></div>
+      <div class="content glass" id="barChartContainer"></div>
     `;
     continents()
     show_barchart(phd);
