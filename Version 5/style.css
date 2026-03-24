@@ -39,6 +39,10 @@ button:hover {
   transform: scale(1.05);
 }
 
+#placeholder {
+  display: block;
+}
+
 #barChartContainer {
   position: relative;
   width: fit-content;
@@ -73,6 +77,46 @@ button:hover {
   transform: rotate(30deg);
   white-space: nowrap;
   margin-top: 5px;
+}
+
+nav.mnav {
+  height: 50px;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  border-radius: 25px;
+  padding: 20px;
+}
+
+button.mnav {
+  z-index: 1;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  width: calc(16.666%);
+  transition: color 0.5s ease;
+}
+
+button.mnav.active {
+  color: rgb(0, 0, 0);
+}
+
+#nav-indicator.mnav {
+  width: calc(16.666% - 8px);
+}
+
+#nav-indicator {
+  position: absolute;
+  z-index: 0;
+  bottom: 4px;
+  left: 4px;
+  height: calc(100% - 8px);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  transition: transform 0.5s ease;
 }
 
 .active {
@@ -210,8 +254,6 @@ button.glass.active:hover {
 .anim3 {
   animation: move3 5.5s infinite alternate ease-in-out;
 }
-
-/* Animationen */
 
 @keyframes move1 {
   0% { transform: translate(0, 0); }

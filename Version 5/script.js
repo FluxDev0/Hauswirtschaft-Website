@@ -3,6 +3,7 @@ let answered = false;
 
 const placeholder = document.getElementById("placeholder");
 const html = document.innerHTML;
+const mnav = document.querySelector("#nav-indicator.mnav");
 
 function showTab(tab) {
   if (tab === "home") {
@@ -12,6 +13,7 @@ function showTab(tab) {
       <p>Ziel: Nachhaltig und gesund essen.</p>
       </div>
     `;
+    mnav.style.transform = "translateX(0%)";
   }
 
   if (tab === "info") {
@@ -26,6 +28,7 @@ function showTab(tab) {
       </ul>
       </div>
     `;
+    mnav.style.transform = "translateX(calc(100% + 8px))";
   }
 
   if (tab === "foods") {
@@ -40,6 +43,7 @@ function showTab(tab) {
       </div>
       </div>
     `;
+    mnav.style.transform = "translateX(calc(200% + 16px))";
   }
 
   if (tab === "quiz") {
@@ -53,6 +57,7 @@ function showTab(tab) {
       <p id="result"></p>
       </div>
     `;
+    mnav.style.transform = "translateX(calc(300% + 24px))";
   }
 
   if (tab === "piechart") {
@@ -69,6 +74,7 @@ function showTab(tab) {
     `;
     show_piechart(phd);
     continents()
+    mnav.style.transform = "translateX(calc(400% + 32px))";
   }
 
   if (tab === "barchart") {
@@ -83,6 +89,7 @@ function showTab(tab) {
     `;
     continents()
     show_barchart(phd);
+    mnav.style.transform = "translateX(calc(500% + 40px))";
   }
 }
 
@@ -151,9 +158,9 @@ function show_barchart(data) {
   });
 }
 
-document.querySelectorAll(".mnav").forEach(box => {
+document.querySelectorAll("button.mnav").forEach(box => {
   box.addEventListener("click", function() {
-    document.querySelectorAll(".mnav").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("button.mnav").forEach(b => b.classList.remove("active"));
     this.classList.add("active");
   });
 });
