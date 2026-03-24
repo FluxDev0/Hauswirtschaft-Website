@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Planet Health 2026 Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="liquid-bg">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+</div>
+
+<div class="app-shell">
+    <header class="ios-header">
+        <h1 class="reveal">Planet Health</h1>
+        <div class="badge reveal">März 2026</div>
+    </header>
+
+    <nav class="pill-nav">
+        <div id="nav-indicator" class="nav-indicator"></div>
+        <button onclick="showTab('home', 0)" class="nav-item active">Home</button>
+        <button onclick="showTab('info', 1)" class="nav-item">Info</button>
+        <button onclick="showTab('foods', 2)" class="nav-item">Foods</button>
+        <button onclick="showTab('quiz', 3)" class="nav-item">Quiz</button>
+    </nav>
+
+    <main class="content-grid">
+        <section id="content" class="glass-card content-module">
+            <!-- Wird per JS gefüllt -->
+        </section>
+
+        <section id="chart-card" class="glass-card chart-module">
+            <div class="slider-ui">
+                <button class="arrow-btn" onclick="moveRegion(-1)">&#8249;</button>
+                <div class="title-wrap">
+                    <span id="region-title">Global Target</span>
+                </div>
+                <button class="arrow-btn" onclick="moveRegion(1)">&#8250;</button>
+            </div>
+            
+            <div class="visual-box">
+                <canvas id="pieChart" width="300" height="300"></canvas>
+            </div>
+            
+            <div id="legend" class="smart-legend"></div>
+        </section>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+

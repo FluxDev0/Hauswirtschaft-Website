@@ -159,21 +159,21 @@ document.querySelectorAll(".mnav").forEach(box => {
 });
 
 const phd = [
-  { value: 300, color: "#4CAF50", label: "Gemüse" },
-  { value: 250, color: "#FF9800", label: "Milchprodukte" },
-  { value: 232, color: "#2196F3", label: "Vollkornprodukte" },
-  { value: 200, color: "#F44336", label: "Obst" },
-  { value: 75, color: "#9C27B0", label: "Hülsenfrüchte" },
-  { value: 50, color: "#3fda21", label: "Wurzelgemüse" },
-  { value: 50, color: "#f436d4", label: "Nüsse & Samen" },
-  { value: 40, color: "#F44336", label: "Pflanzenöle" },
-  { value: 31, color: "#f4e736", label: "Zucker" },
-  { value: 29, color: "#36f4eb", label: "Geflügel" },
-  { value: 28, color: "#000000", label: "Fisch" },
-  { value: 14, color: "#F44336", label: "rotes Fleisch" },
-  { value: 13, color: "#245f09", label: "Eier" },
-  { value: 7, color: "#3cf436", label: "Palmöl" },
-  { value: 5, color: "#ec3d2d", label: "tierisches Fett" },
+  { value: 300, color: "rgba(76, 175, 80, 0.8)", label: "Gemüse" },
+  { value: 250, color: "rgba(255, 152, 0, 0.8)", label: "Milchprodukte" },
+  { value: 232, color: "rgba(33, 150, 243, 0.8)", label: "Vollkornprodukte" },
+  { value: 200, color: "rgba(244, 67, 54, 0.8)", label: "Obst" },
+  { value: 75, color: "rgba(156, 39, 176, 0.8)", label: "Hülsenfrüchte" },
+  { value: 50, color: "rgba(63, 218, 33, 0.8)", label: "Wurzelgemüse" },
+  { value: 50, color: "rgba(244, 54, 212, 0.8)", label: "Nüsse & Samen" },
+  { value: 40, color: "rgba(244, 67, 54, 0.8)", label: "Pflanzenöle" },
+  { value: 31, color: "rgba(244, 231, 54, 0.8)", label: "Zucker" },
+  { value: 29, color: "rgba(54, 244, 235, 0.8)", label: "Geflügel" },
+  { value: 28, color: "rgba(0, 0, 0, 0.8)", label: "Fisch" },
+  { value: 14, color: "rgba(244, 67, 54, 0.8)", label: "rotes Fleisch" },
+  { value: 13, color: "rgba(36, 95, 9, 0.8)", label: "Eier" },
+  { value: 7, color: "rgba(60, 244, 54, 0.8)", label: "Palmöl" },
+  { value: 5, color: "rgba(236, 61, 45, 0.8)", label: "tierisches Fett" },
 ];
 
 const north_america = [

@@ -1,9 +1,11 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: rgb(2, 2, 29);
+  background: rgb(9, 9, 19);
   align-content: center;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -38,15 +40,18 @@ button:hover {
 }
 
 #barChartContainer {
+  position: relative;
   width: fit-content;
   margin: 0 auto;
   align-items: flex-end;
   display: flex;
   gap: 10px;
   padding: 20px;
+  padding-bottom: 60px;
 }
 
 .bar {
+  position: relative;
   margin: 0;
   width: 80px;
   border: 2px solid rgba(0, 0, 0, 0.3);
@@ -60,10 +65,14 @@ button:hover {
 
 .bar span.label {
   display: inline-block;
-  position: relative;
+  position: absolute;
   top: 100%;
+  left: 10%;
   font-size: 12px;
-  transform: rotate(45deg);
+  transform-origin: left top;
+  transform: rotate(30deg);
+  white-space: nowrap;
+  margin-top: 5px;
 }
 
 .active {
@@ -76,7 +85,7 @@ button:hover {
   margin: 15px auto;
   padding: 0px 0px;
   background: white;
-  border-radius: 15px;
+  border-radius: 45px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   color: rgb(255, 255, 255);
 }
@@ -115,17 +124,32 @@ button:hover {
 }
 
 .glass {
-  background: linear-gradient(60deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
 .glass:hover {
-  background: linear-gradient(60deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
-  transform: scale(1.05);
-  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.13);
+  transform: scale(1.02);
+}
+
+button.glass:hover {
+  background: rgba(255, 255, 255, 0.13);
+  transform: scale(1.08);
+}
+
+button.glass.active {
+  background: linear-gradient(to right, rgb(14, 219, 106), rgb(136, 223, 118));
+  transform: scale(1.15);
+  backdrop-filter: blur(10px);
+  transition: transform 0.5s ease;
+}
+
+button.glass.active:hover {
+  transform: scale(1.1);
 }
 
 .piechart {
@@ -139,12 +163,6 @@ button:hover {
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
 }
 
-.glass.active {
-  background: linear-gradient(to right, rgb(14, 219, 106), rgb(136, 223, 118));
-  transform: scale(1.2);
-  backdrop-filter: blur(30px);
-}
-
 .debug {
   outline: 1px solid red;
 }
@@ -153,13 +171,13 @@ button:hover {
   position: fixed;
   inset: 0;
   z-index: -1;
-  filter: blur(70px); /* DAS macht den Magic Effekt */
+  filter: blur(150px); /* DAS macht den Magic Effekt */
 }
 
 .blob {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
 }
 
