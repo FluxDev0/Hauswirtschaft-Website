@@ -134,28 +134,39 @@ function show_piechart(data) {
 
 function show_barchart(data) {
   const container = document.getElementById("barChartContainer");
-  container.innerHTML = ""; // alten Inhalt löschen
 
   const maxValue = Math.max(...data.map(d => d.value));
 
-  data.forEach(item => {
+  if (container.innerHTML !== "") {
+    data.forEach(item => {
+      const bar = document.getElementById(item.label);
+      bar.style.height = ((item.value / maxValue) * 600) + "px";
+      bar.querySelector("#barvalue").textContent = item.value + "g";
+      console.log("activated");
+    });
+  } else {
+    data.forEach(item => {
 
-    const bar = document.createElement("div");
-    bar.classList.add("bar");
-    bar.style.height = ((item.value / maxValue) * 600) + "px";
-    bar.style.backgroundColor = item.color;
+      const bar = document.createElement("div");
+      bar.classList.add("bar");
+      bar.style.height = ((item.value / maxValue) * 600) + "px";
+      bar.style.backgroundColor = item.color;
+      bar.id = item.label;
 
-    const value = document.createElement("span");
-    value.textContent = item.value + "g";
-    bar.appendChild(value);
+      const value = document.createElement("span");
+      value.textContent = item.value + "g";
+      value.id = "barvalue";
+      bar.appendChild(value);
 
-    const label = document.createElement("span");
-    label.classList.add("label");
-    label.textContent = item.label;
-    bar.appendChild(label);
+      const label = document.createElement("span");
+      label.classList.add("label");
+      label.textContent = item.label;
+      label.id = "barlabel";
+      bar.appendChild(label);
 
-    container.appendChild(bar);
-  });
+      container.appendChild(bar);
+    });
+  };
 }
 
 document.querySelectorAll("button.mnav").forEach(box => {
