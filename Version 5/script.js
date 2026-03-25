@@ -3,7 +3,7 @@ let answered = false;
 
 const placeholder = document.getElementById("placeholder");
 const html = document.innerHTML;
-const mnav = document.querySelector("#nav-indicator.mnav");
+const mnav = document.querySelector("nav.mnav #nav-indicator");
 
 function showTab(tab) {
   if (tab === "home") {
@@ -13,7 +13,6 @@ function showTab(tab) {
       <p>Ziel: Nachhaltig und gesund essen.</p>
       </div>
     `;
-    mnav.style.transform = "translateX(0%)";
   }
 
   if (tab === "info") {
@@ -28,7 +27,6 @@ function showTab(tab) {
       </ul>
       </div>
     `;
-    mnav.style.transform = "translateX(calc(100% + 8px))";
   }
 
   if (tab === "foods") {
@@ -43,7 +41,6 @@ function showTab(tab) {
       </div>
       </div>
     `;
-    mnav.style.transform = "translateX(calc(200% + 16px))";
   }
 
   if (tab === "quiz") {
@@ -57,15 +54,15 @@ function showTab(tab) {
       <p id="result"></p>
       </div>
     `;
-    mnav.style.transform = "translateX(calc(300% + 24px))";
   }
 
   if (tab === "piechart") {
     placeholder.innerHTML = `
-      <nav>
-        <button onclick="show_piechart(phd)" class="glass continent active">PHD</button>
-        <button onclick="show_piechart(north_america)" class="glass continent">Nordamerika</button>
-        <button onclick="show_piechart(europe)" class="glass continent">Europa</button>
+      <nav class="glass regnav">
+        <div id="nav-indicator" styles="transform: translateX(0%);"></div>
+        <button onclick="show_barchart(phd)" class="active">PHD</button>
+        <button onclick="show_barchart(north_america)">Nordamerika</button>
+        <button onclick="show_barchart(europe);">Europa</button>
       </nav>
 
       <div class="content glass" style="padding: 0px;">
@@ -73,23 +70,22 @@ function showTab(tab) {
       </div>
     `;
     show_piechart(phd);
-    continents()
-    mnav.style.transform = "translateX(calc(400% + 32px))";
+    continents();
   }
 
   if (tab === "barchart") {
     placeholder.innerHTML = `
-      <nav>
-        <button onclick="show_barchart(phd)" class="glass continent active">PHD</button>
-        <button onclick="show_barchart(north_america)" class="glass continent">Nordamerika</button>
-        <button onclick="show_barchart(europe)" class="glass continent">Europa</button>
+      <nav class="glass regnav">
+        <div id="nav-indicator" styles="transform: translateX(0%);"></div>
+        <button onclick="show_barchart(phd)" class="active">PHD</button>
+        <button onclick="show_barchart(north_america)">Nordamerika</button>
+        <button onclick="show_barchart(europe);">Europa</button>
       </nav>
 
       <div class="content glass" id="barChartContainer"></div>
     `;
-    continents()
+    continents();
     show_barchart(phd);
-    mnav.style.transform = "translateX(calc(500% + 40px))";
   }
 }
 
@@ -102,12 +98,19 @@ function answer(correct) {
 }
 
 function continents() {
-  document.querySelectorAll(".continent").forEach(box => {
+  document.querySelectorAll("nav.regnav button").forEach((box, index) => {
       box.addEventListener("click", function() {
-        document.querySelectorAll(".continent").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll("nav.regnav button").forEach(b => b.classList.remove("active"));
         this.classList.add("active");
+        navindication("regnav", index);
       });
     });
+};
+
+function navindication(navclass, index) {
+  const nav = document.querySelector("nav." + navclass + " #nav-indicator");
+  if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator")};
+  nav.style.transform = `translateX(calc(${index} * (100% + 8px)))`;
 }
 
 function show_piechart(data) {
@@ -135,12 +138,10 @@ function show_piechart(data) {
 function show_barchart(data) {
   const container = document.getElementById("barChartContainer");
 
-  const maxValue = Math.max(...data.map(d => d.value));
-
   if (container.innerHTML !== "") {
     data.forEach(item => {
       const bar = document.getElementById(item.label);
-      bar.style.height = ((item.value / maxValue) * 600) + "px";
+      bar.style.height = (item.value * 1.3) + "px";
       bar.querySelector("#barvalue").textContent = item.value + "g";
       console.log("activated");
     });
@@ -149,7 +150,7 @@ function show_barchart(data) {
 
       const bar = document.createElement("div");
       bar.classList.add("bar");
-      bar.style.height = ((item.value / maxValue) * 600) + "px";
+      bar.style.height = "0px";
       bar.style.backgroundColor = item.color;
       bar.id = item.label;
 
@@ -165,14 +166,18 @@ function show_barchart(data) {
       bar.appendChild(label);
 
       container.appendChild(bar);
+      setTimeout(function() {
+        bar.style.height = (item.value * 1.3) + "px";
+      }, 1);
     });
   };
 }
 
-document.querySelectorAll("button.mnav").forEach(box => {
+document.querySelectorAll("nav.mnav button").forEach((box, index) => {
   box.addEventListener("click", function() {
-    document.querySelectorAll("button.mnav").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("nav.mnav button").forEach(b => b.classList.remove("active"));
     this.classList.add("active");
+    navindication("mnav", index);
   });
 });
 

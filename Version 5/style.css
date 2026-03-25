@@ -16,24 +16,6 @@ header {
   color: rgba(255, 255, 255, 1);
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  color: white;
-  background-color: rgba(220, 222, 230, 0.5);
-  transition: background-color 0.5s ease, transform 0.3s ease;
-}
-
 button:hover {
   background-color: rgba(220, 222, 230, 0.8);
   transform: scale(1.05);
@@ -49,7 +31,7 @@ button:hover {
   margin: 0 auto;
   align-items: flex-end;
   display: flex;
-  height: 650px;
+  height: 640px;
   gap: 10px;
   padding: 20px;
   padding-bottom: 60px;
@@ -80,36 +62,65 @@ button:hover {
   margin-top: 5px;
 }
 
-nav.mnav {
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
   height: 50px;
-  width: 60%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-  border-radius: 25px;
-  padding: 20px;
+  gap: 0px;
 }
 
-button.mnav {
+nav.mnav {
+  width: calc(60% + 40px);
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(220, 222, 230, 0.5);
+  transition: background-color 0.5s ease, transform 0.3s ease;
+}
+
+nav button {
   z-index: 1;
   background: transparent;
   color: white;
   font-size: 14px;
   font-weight: bold;
-  width: calc(16.666%);
   transition: color 0.5s ease;
 }
 
-button.mnav.active {
+nav.glass button {
+  height: 100%;
+  background-color: transparent;
+  padding: 4px;
+}
+
+nav.mnav button {
+  width: calc(16.666%);
+}
+
+nav.regnav button {
+  width: calc(33.333%);
+}
+
+nav.glass button.active {
   color: rgb(0, 0, 0);
 }
 
-#nav-indicator.mnav {
+nav.mnav #nav-indicator {
   width: calc(16.666% - 8px);
 }
 
-#nav-indicator {
+nav.regnav #nav-indicator {
+  width: calc(33.333% - 8px);
+}
+
+nav.glass #nav-indicator {
   position: absolute;
   z-index: 0;
   bottom: 4px;
@@ -173,6 +184,7 @@ button.mnav.active {
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  border-radius: 25px;
   transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
