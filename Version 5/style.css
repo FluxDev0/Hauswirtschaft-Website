@@ -2,10 +2,16 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: rgb(9, 9, 19);
-  align-content: center;
+}
+
+.basic {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  gap: 20px;
+  margin: 0;
 }
 
 header {
@@ -21,8 +27,16 @@ button:hover {
   transform: scale(1.05);
 }
 
-#placeholder {
-  display: block;
+h5 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+}
+
+h6 {
+  text-align: center;
+  margin: 0;
 }
 
 #barChartContainer {
@@ -37,13 +51,21 @@ button:hover {
   padding-bottom: 60px;
 }
 
+#barChartContainer:hover {
+  transform: none;
+}
+
 .bar {
   position: relative;
   margin: 0;
   width: 80px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 7px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, height 1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bar:hover {
@@ -53,26 +75,27 @@ button:hover {
 .bar span.label {
   display: inline-block;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 10%;
-  font-size: 12px;
+  font-size: 16px;
   transform-origin: left top;
   transform: rotate(30deg);
   white-space: nowrap;
   margin-top: 5px;
 }
 
+.bar span#barvalue {
+  position: relative;
+  top: -22px;
+  font-size: 16px;
+}
+
 nav {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
   height: 50px;
   gap: 0px;
-}
-
-nav.mnav {
-  width: calc(60% + 40px);
+  width: var(--width);
 }
 
 button {
@@ -95,29 +118,41 @@ nav button {
 }
 
 nav.glass button {
-  height: 100%;
+  height: calc(100% - 8px);
   background-color: transparent;
-  padding: 4px;
+  padding: 0px;
+  margin: 4px 4px;
+  border-radius: 25px;
+  transition: background-color 0.6s ease, font-size 0.3s ease, color 0.5s ease;
+  width: calc((100% / var(--buttons-per-row)) - 8px);
 }
 
-nav.mnav button {
-  width: calc(16.666%);
+nav.glass button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+  transform: none;
 }
 
-nav.regnav button {
-  width: calc(33.333%);
+nav.glass button.active:hover {
+  background-color: transparent;
+}
+
+.mnav {
+  --buttons-per-row: 6;
+  --width: calc(60% + 40px);
+}
+
+.regnav {
+  --buttons-per-row: 3;
+  --width: calc(60% + 40px);
 }
 
 nav.glass button.active {
   color: rgb(0, 0, 0);
 }
 
-nav.mnav #nav-indicator {
-  width: calc(16.666% - 8px);
-}
-
-nav.regnav #nav-indicator {
-  width: calc(33.333% - 8px);
+nav #nav-indicator {
+  width: calc((100% / var(--buttons-per-row)) - 8px);
 }
 
 nav.glass #nav-indicator {
@@ -131,14 +166,8 @@ nav.glass #nav-indicator {
   transition: transform 0.5s cubic-bezier(0.68, -0.3, 0.32, 1.3);
 }
 
-.active {
-  background-color: green;
-  color: white;
-}
-
 .content {
   width: fit-content;
-  margin: 15px auto;
   padding: 0px 0px;
   background: white;
   border-radius: 45px;
@@ -147,7 +176,6 @@ nav.glass #nav-indicator {
 }
 
 .info {
-  max-width: 400px;
   margin: 0 auto;
   padding: 20px 20px;
   background: white;
