@@ -2,65 +2,44 @@ let score = 0;
 let answered = false;
 
 const placeholder = document.getElementById("placeholder");
-const html = document.innerHTML;
 const mnav = document.querySelector("nav.mnav #nav-indicator");
 
-function showTab(tab) {
-  if (tab === "home") {
-    placeholder.innerHTML = `
+html = {
+  "home": `
       <div class="info glass" id="content">
         <h5>Eine Website über die Planetary Health Diet.</h5>
         <p>Klicke auf einen Abschnitt um mehr zu erfahren.</p>
-        <h6>ohne KI.</h6>
       </div>
-    `;
-  }
-
-  if (tab === "info") {
-    placeholder.innerHTML = `
-      <div class="info glass" id="content" styles="max-width: 800px;">
-      <p>Die Planetary Health Diet ist ein Ernährungsstil welcher von der EAT-Lancet Kommission entwickelt wurde.
+    `,
+  "info": `
+      <div class="info glass" id="content">
+      <p>
+      Die Planetary Health Diet ist ein Ernährungsstil welcher von der EAT-Lancet Kommission entwickelt wurde.
       Das Ziel ist eine nachhaltige Ernährung, die für ein gesundes Leben sorgt und für 10 Milliarden Menschen im Jahr 2050 ausreicht und dabei möglichst wenig die Umwelt belastet.
+      Bei der Entwicklung der Planetary Heath Diet wurden auf sechs Hauptbereiche des Erdsystems geachtet:
+      Klimawandel, Landverbrauch, Süßwasser, Stickstoffkreislauf, Phosphorkreislauf und Biodiversitätsverlust.
+      Für jeden Bereich wurde eine Höchstgrenze an Belastung festgelegt welche nicht überschritten werden sollten.
       </p>
-      </div>
-    `;
-  }
-
-  if (tab === "foods") {
-    placeholder.innerHTML = `
-      <div class="info glass" id="content">
-      </div>
-    `;
-  }
-
-  if (tab === "quiz") {
-    answered = false;
-    placeholder.innerHTML = `
-      <div class="info glass" id="content">
+      </div> 
+    `,
+  "quiz": `
+    <div class="info glass" id="content">
       <h2>Quiz</h2>
-      </div>
-    `;
-  }
+    </div>
+  `,
+  "piechart": `
+    <nav class="glass regnav">
+      <div id="nav-indicator" styles="transform: translateX(0%);"></div>
+      <button onclick="show_piechart(phd)" class="active">PHD</button>
+      <button onclick="show_piechart(north_america)">Nordamerika</button>
+      <button onclick="show_piechart(europe);">Europa</button>
+    </nav>
 
-  if (tab === "piechart") {
-    placeholder.innerHTML = `
-      <nav class="glass regnav">
-        <div id="nav-indicator" styles="transform: translateX(0%);"></div>
-        <button onclick="show_piechart(phd)" class="active">PHD</button>
-        <button onclick="show_piechart(north_america)">Nordamerika</button>
-        <button onclick="show_piechart(europe);">Europa</button>
-      </nav>
-
-      <div class="content glass" style="padding: 0px;">
-        <canvas id="pieChart" width="300" height="300" class="piechart"> </canvas>
-      </div>
-    `;
-    continents();
-    show_piechart(phd);
-  }
-
-  if (tab === "barchart") {
-    placeholder.innerHTML = `
+    <div class="content glass" style="padding: 0px;">
+      <canvas id="pieChart" width="300" height="300" class="piechart"> </canvas>
+    </div>
+  `,
+  "barchart": `
       <nav class="glass regnav">
         <div id="nav-indicator" styles="transform: translateX(0%);"></div>
         <button onclick="show_barchart(phd)" class="active">PHD</button>
@@ -69,10 +48,26 @@ function showTab(tab) {
       </nav>
 
       <div class="content glass" id="barChartContainer"></div>
-    `;
-    continents();
-    show_barchart(phd);
-  }
+    `,
+  "example": `
+    <div class="info glass" id="content">
+      <p></p>
+    </div>
+  `
+}
+
+extrafuncs = {
+  "home": function() {setupnav("mnav", "placeholder");}, 
+  "piechart": function() {show_piechart(phd); setupnav("regnav");},
+  "barchart": function() {show_barchart(phd); setupnav("regnav");}
+};
+
+function show(id, contentname) {
+  element = document.getElementById(id);
+  element.innerHTML = html[contentname];
+  if (extrafuncs[contentname]) {
+    extrafuncs[contentname]();
+  };
 }
 
 function answer(correct) {
@@ -83,19 +78,22 @@ function answer(correct) {
   }
 }
 
-function continents() {
-  document.querySelectorAll("nav.regnav button").forEach((box, index) => {
+function setupnav(navclass, showelement) {
+  document.querySelectorAll(`nav.${navclass} button`).forEach((box, index) => {
       box.addEventListener("click", function() {
-        document.querySelectorAll("nav.regnav button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(`nav.${navclass} button`).forEach(b => b.classList.remove("active"));
         this.classList.add("active");
-        navindication("regnav", index);
+        navindication(navclass, index);
+        if (showelement) {
+          show(showelement, this.id);
+        };
       });
-    });
-};
+  });
+}
 
 function navindication(navclass, index) {
   const nav = document.querySelector("nav." + navclass + " #nav-indicator");
-  if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator")};
+  if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator not found. Please check where the nav went. If your reading this your probably a developer and if you arent your just meesing with the browser.")};
   nav.style.transform = `translateX(calc(${index} * (100% + 8px)))`;
 }
 
@@ -116,8 +114,6 @@ function show_piechart(data) {
     ctx.arc(canvas.width/2, canvas.height/2, 100, startAngle, startAngle + sliceAngle);
     ctx.closePath();
 
-    console.log(phd[0].color);
-    console.log(index);
     ctx.fillStyle = phd[index].color;
     ctx.fill();
 
@@ -133,7 +129,6 @@ function show_barchart(data) {
       const bar = document.getElementById(item.label);
       bar.style.height = (item.value * 1.3) + "px";
       bar.querySelector("#barvalue").textContent = item.value + "g";
-      console.log("activated");
     });
   } else {
     data.forEach(item => {
@@ -162,15 +157,6 @@ function show_barchart(data) {
     });
   };
 }
-
-document.querySelectorAll("nav.mnav button").forEach((box, index) => {
-  box.addEventListener("click", function() {
-    document.querySelectorAll("nav.mnav button").forEach(b => b.classList.remove("active"));
-    this.classList.add("active");
-    navindication("mnav", index);
-    showTab(this.id);
-  });
-});
 
 const phd = [
   { value: 300, color: "rgba(70, 184, 74, 0.8)", label: "Gemüse" },
@@ -226,5 +212,5 @@ const europe = [
   { value: 21, label: "tierisches Fett" },
 ];
 
-// Startseite laden
-showTab('home');
+//Startsetup
+show("placeholder", "home");
