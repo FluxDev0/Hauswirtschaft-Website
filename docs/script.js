@@ -10,6 +10,7 @@ function showTab(tab) {
     placeholder.innerHTML = `
       <div class="info glass" id="content">
         <h5>Eine Website über die Planetary Health Diet.</h5>
+        <p>Klicke auf einen Abschnitt um mehr zu erfahren.</p>
         <h6>ohne KI.</h6>
       </div>
     `;
@@ -17,7 +18,10 @@ function showTab(tab) {
 
   if (tab === "info") {
     placeholder.innerHTML = `
-      <div class="info glass" id="content">
+      <div class="info glass" id="content" styles="max-width: 800px;">
+      <p>Die Planetary Health Diet ist ein Ernährungsstil welcher von der EAT-Lancet Kommission entwickelt wurde.
+      Das Ziel ist eine nachhaltige Ernährung, die für ein gesundes Leben sorgt und für 10 Milliarden Menschen im Jahr 2050 ausreicht und dabei möglichst wenig die Umwelt belastet.
+      </p>
       </div>
     `;
   }
@@ -42,17 +46,17 @@ function showTab(tab) {
     placeholder.innerHTML = `
       <nav class="glass regnav">
         <div id="nav-indicator" styles="transform: translateX(0%);"></div>
-        <button onclick="show_barchart(phd)" class="active">PHD</button>
-        <button onclick="show_barchart(north_america)">Nordamerika</button>
-        <button onclick="show_barchart(europe);">Europa</button>
+        <button onclick="show_piechart(phd)" class="active">PHD</button>
+        <button onclick="show_piechart(north_america)">Nordamerika</button>
+        <button onclick="show_piechart(europe);">Europa</button>
       </nav>
 
       <div class="content glass" style="padding: 0px;">
         <canvas id="pieChart" width="300" height="300" class="piechart"> </canvas>
       </div>
     `;
-    show_piechart(phd);
     continents();
+    show_piechart(phd);
   }
 
   if (tab === "barchart") {
@@ -102,7 +106,9 @@ function show_piechart(data) {
 
   let startAngle = 0;
 
-  data.forEach(item => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  data.forEach((item, index) => {
     const sliceAngle = (item.value / total) * 2 * Math.PI;
 
     ctx.beginPath();
@@ -110,7 +116,9 @@ function show_piechart(data) {
     ctx.arc(canvas.width/2, canvas.height/2, 100, startAngle, startAngle + sliceAngle);
     ctx.closePath();
 
-    ctx.fillStyle = item.color;
+    console.log(phd[0].color);
+    console.log(index);
+    ctx.fillStyle = phd[index].color;
     ctx.fill();
 
     startAngle += sliceAngle;

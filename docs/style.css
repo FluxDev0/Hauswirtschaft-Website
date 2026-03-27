@@ -39,6 +39,11 @@ h6 {
   margin: 0;
 }
 
+p {
+  max-width: 800px;
+  text-align: center;
+}
+
 #barChartContainer {
   position: relative;
   width: fit-content;
@@ -138,7 +143,7 @@ nav.glass button.active:hover {
 }
 
 .mnav {
-  --buttons-per-row: 6;
+  --buttons-per-row: 5;
   --width: calc(60% + 40px);
 }
 
