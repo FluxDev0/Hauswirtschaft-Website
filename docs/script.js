@@ -25,8 +25,6 @@ function showTab(tab) {
   if (tab === "foods") {
     placeholder.innerHTML = `
       <div class="info glass" id="content">
-      <div class="grid">
-      </div>
       </div>
     `;
   }
