@@ -18,12 +18,6 @@ function showTab(tab) {
   if (tab === "info") {
     placeholder.innerHTML = `
       <div class="info glass" id="content">
-      <ul>
-        <li>Weniger Fleisch</li>
-        <li>Mehr Gemüse</li>
-        <li>Weniger Zucker</li>
-        <li>Nachhaltigkeit</li>
-      </ul>
       </div>
     `;
   }
@@ -32,11 +26,6 @@ function showTab(tab) {
     placeholder.innerHTML = `
       <div class="info glass" id="content">
       <div class="grid">
-        <div class="card good">Gemüse 👍</div>
-        <div class="card good">Obst 👍</div>
-        <div class="card good">Vollkorn 👍</div>
-        <div class="card bad">Fleisch 👎</div>
-        <div class="card bad">Zucker 👎</div>
       </div>
       </div>
     `;
@@ -47,10 +36,6 @@ function showTab(tab) {
     placeholder.innerHTML = `
       <div class="info glass" id="content">
       <h2>Quiz</h2>
-      <p>Ist viel Fleisch gut?</p>
-      <button class="glass" onclick="answer(false)">Ja</button>
-      <button class="glass" onclick="answer(true)">Nein</button>
-      <p id="result"></p>
       </div>
     `;
   }
