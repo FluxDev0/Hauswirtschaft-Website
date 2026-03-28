@@ -265,40 +265,15 @@ button.glass.active:hover {
 }
 
 .blob {
-  position: absolute;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-}
-
-.blob1 {
-  background: #14bd1d;
-  top: 50%;
-  left: 40%;
-}
-
-.blob2 {
-  background: #df380e;
-  top: 10%;
-  left: 10%;
-}
-
-.blob3 {
-  background: #0c9dc9;
-  top: 40%;
-  left: 70%;
-}
-
-.anim1 {
-  animation: move1 4s infinite alternate ease-in-out;
-}
-
-.anim2 {
-  animation: move2 3s infinite alternate ease-in-out;
-}
-
-.anim3 {
-  animation: move3 5.5s infinite alternate ease-in-out;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  animation:
+   var(--anim, move4) var(--dur, 20s) infinite alternate cubic-bezier(.3, .1, .7, .9) var(--animd, 0s),
+   var(--animcolor, colors) var(--clength, 20s) infinite alternate cubic-bezier(.65, 0, .35, 1) var(--d, 0s);
 }
 
 @keyframes move1 {
@@ -317,4 +292,48 @@ button.glass.active:hover {
   0% { transform: translate(0, 0); }
   50% { transform: translate(-5%, 10%); }
   100% { transform: translate(30%, -10%); }
+}
+
+@keyframes move4 {
+  000% { transform: translate(-20vw, -30vh); }
+  010% { transform: translate(0vw, -25vh); }
+  020% { transform: translate(15vw, -30vh); }
+  030% { transform: translate(20vw, -5vh); }
+  040% { transform: translate(-10vw, 5vh); }
+  050% { transform: translate(-20vw, 15vh); }
+  060% { transform: translate(-40vw, 0vh); }
+  070% { transform: translate(-15vw, 20vh); }
+  080% { transform: translate(15vw, -7vh); }
+  090% { transform: translate(30vw, 0vh); }
+  100% { transform: translate(5vw, -20vh); }
+}
+
+@keyframes move5 {
+  0% { transform: translate(-10vw, 0vh); }
+  25% { transform: translate(10vw, 20vh); }
+  50% { transform: translate(-15vw, 0vh); }
+  75% { transform: translate(20vw, 10vh); }
+  100% { transform: translate(30vw, 0vh); }
+}
+
+@keyframes move6 {
+  0% { transform: translate(30vw, 30vh); }
+  25% { transform: translate(30vw, 30vh); }
+  50% { transform: translate(30vw, 30vh); }
+  75% { transform: translate(30vw, 30vh); }
+  100% { transform: translate(30vw, 30vh); }
+}
+
+.rainbow {
+  animation: colors var(--clength) infinite alternate linear;
+  animation-delay: var(--d);
+}
+
+@keyframes colors {
+  0% { background: #df380e;}
+  20% { background: #df6c0e;}
+  40% { background: #f0cd08; }
+  60% { background: #14bd1d; }
+  80% { background: #0c9dc9; }
+  100% { background: #b510f7; }
 }

@@ -29,7 +29,7 @@ html = {
   `,
   "piechart": `
     <nav class="glass regnav">
-      <div id="nav-indicator" styles="transform: translateX(0%);"></div>
+      <div id="nav-indicator" style="transform: translateX(0%);"></div>
       <button onclick="show_piechart(phd)" class="active">PHD</button>
       <button onclick="show_piechart(north_america)">Nordamerika</button>
       <button onclick="show_piechart(europe);">Europa</button>
@@ -41,7 +41,7 @@ html = {
   `,
   "barchart": `
       <nav class="glass regnav">
-        <div id="nav-indicator" styles="transform: translateX(0%);"></div>
+        <div id="nav-indicator" style="transform: translateX(0%);"></div>
         <button onclick="show_barchart(phd)" class="active">PHD</button>
         <button onclick="show_barchart(north_america)">Nordamerika</button>
         <button onclick="show_barchart(europe);">Europa</button>
