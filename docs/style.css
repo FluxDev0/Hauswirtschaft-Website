@@ -188,41 +188,17 @@ nav.glass #nav-indicator {
   color: rgb(255, 255, 255);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.card {
-  padding: 15px;
-  border-radius: 10px;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.good {
-  background: #a8e6cf;
-}
-
-.bad {
-  background: #ffaaa5;
-}
-
 .glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) brightness(110%);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
   border-radius: 25px;
-  transition: transform 0.5s ease, background-color 0.5s ease;
+  transition: transform 0.5s ease, background-color 0.5s ease, backdrop-filter 0.5s ease;
 }
 
 .glass:hover {
-  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px) brightness(130%);
   transform: scale(1.02);
 }
 
@@ -243,6 +219,7 @@ button.glass.active:hover {
 }
 
 .piechart {
+  aspect-ratio: 1;
   display: block;
   margin: auto;
   transition: transform 0.5s ease, filter 0.5s ease;
@@ -261,7 +238,7 @@ button.glass.active:hover {
   position: fixed;
   inset: 0;
   z-index: -1;
-  filter: blur(150px); /* DAS macht den Magic Effekt */
+  filter: blur(150px);
 }
 
 .blob {
@@ -271,30 +248,13 @@ button.glass.active:hover {
   position: absolute;
   inset: 0;
   margin: auto;
+  content: attr(data-test);
   animation:
-   var(--anim, move4) var(--dur, 20s) infinite alternate cubic-bezier(.3, .1, .7, .9) var(--animd, 0s),
-   var(--animcolor, colors) var(--clength, 20s) infinite alternate cubic-bezier(.65, 0, .35, 1) var(--d, 0s);
+   var(--anim1, move1) var(--dur, 25s) infinite alternate cubic-bezier(.3, .1, .7, .9) var(--animd, 0s),
+   var(--anim2, colors) var(--clength, 20s) infinite alternate cubic-bezier(.65, 0, .35, 1) var(--d, 0s);
 }
 
 @keyframes move1 {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-15%, 15%); }
-  100% { transform: translate(15%, -20%); }
-}
-
-@keyframes move2 {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(15%, -10%); }
-  100% { transform: translate(-20%, 15%); }
-}
-
-@keyframes move3 {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-5%, 10%); }
-  100% { transform: translate(30%, -10%); }
-}
-
-@keyframes move4 {
   000% { transform: translate(-20vw, -30vh); }
   010% { transform: translate(0vw, -25vh); }
   020% { transform: translate(15vw, -30vh); }
@@ -308,20 +268,28 @@ button.glass.active:hover {
   100% { transform: translate(5vw, -20vh); }
 }
 
-@keyframes move5 {
-  0% { transform: translate(-10vw, 0vh); }
-  25% { transform: translate(10vw, 20vh); }
-  50% { transform: translate(-15vw, 0vh); }
-  75% { transform: translate(20vw, 10vh); }
+@keyframes move2 {
+  000% { transform: translate(-20vw, -30vh); }
+  005% { transform: translate(0vw, -25vh); }
+  010% { transform: translate(15vw, -30vh); }
+  015% { transform: translate(20vw, -5vh); }
+  020% { transform: translate(-10vw, 5vh); }
+  025% { transform: translate(-20vw, 15vh); }
+  030% { transform: translate(-40vw, 0vh); }
+  035% { transform: translate(-15vw, 20vh); }
+  040% { transform: translate(15vw, -7vh); }
+  045% { transform: translate(30vw, 0vh); }
+  050% { transform: translate(5vw, -20vh); }
+  055% { transform: translate(-20vw, -30vh); }
+  060% { transform: translate(0vw, -25vh); }
+  065% { transform: translate(15vw, -30vh); }
+  070% { transform: translate(20vw, -5vh); }
+  075% { transform: translate(-10vw, 5vh); }
+  080% { transform: translate(-20vw, 15vh); }
+  085% { transform: translate(-40vw, 0vh); }
+  090% { transform: translate(-15vw, 20vh); }
+  095% { transform: translate(15vw, -7vh); }
   100% { transform: translate(30vw, 0vh); }
-}
-
-@keyframes move6 {
-  0% { transform: translate(30vw, 30vh); }
-  25% { transform: translate(30vw, 30vh); }
-  50% { transform: translate(30vw, 30vh); }
-  75% { transform: translate(30vw, 30vh); }
-  100% { transform: translate(30vw, 30vh); }
 }
 
 .rainbow {
@@ -336,4 +304,12 @@ button.glass.active:hover {
   60% { background: #14bd1d; }
   80% { background: #0c9dc9; }
   100% { background: #b510f7; }
+}
+
+.neu-inset {
+  background: linear-gradient(145deg, #1f2937, #343e4d);
+  box-shadow: inset 4px 4px 8px #101624, inset -4px -4px 8px #4b5664;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
 }

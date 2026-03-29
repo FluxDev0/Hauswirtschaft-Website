@@ -36,7 +36,7 @@ html = {
     </nav>
 
     <div class="content glass" style="padding: 0px;">
-      <canvas id="pieChart" width="300" height="300" class="piechart"> </canvas>
+      <canvas id="pieChart" data-radius="300" class="piechart"> </canvas>
     </div>
   `,
   "barchart": `
@@ -101,6 +101,8 @@ function show_piechart(data) {
   const canvas = document.getElementById("pieChart");
   const ctx = canvas.getContext("2d");
   const total = data.reduce((sum, item) => sum + item.value, 0);
+  canvas.width = canvas.dataset.radius * 2;
+  canvas.height = canvas.dataset.radius * 2;
 
   let startAngle = 0;
 
@@ -111,7 +113,7 @@ function show_piechart(data) {
 
     ctx.beginPath();
     ctx.moveTo(canvas.width/2, canvas.height/2);
-    ctx.arc(canvas.width/2, canvas.height/2, 100, startAngle, startAngle + sliceAngle);
+    ctx.arc(canvas.width/2, canvas.height/2, canvas.dataset.radius - 40, startAngle, startAngle + sliceAngle);
     ctx.closePath();
 
     ctx.fillStyle = phd[index].color;
@@ -159,21 +161,21 @@ function show_barchart(data) {
 }
 
 const phd = [
-  { value: 300, color: "rgba(70, 184, 74, 0.8)", label: "Gemüse" },
-  { value: 250, color: "rgba(255, 196, 0, 0.81)", label: "Milchprodukte" },
-  { value: 232, color: "rgba(33, 150, 243, 0.8)", label: "Vollkornprodukte" },
-  { value: 200, color: "rgba(244, 67, 54, 0.8)", label: "Obst" },
-  { value: 75, color: "rgba(188, 30, 216, 0.8)", label: "Hülsenfrüchte" },
-  { value: 50, color: "rgba(70, 184, 74, 0.8)", label: "Wurzelgemüse" },
-  { value: 50, color: "rgba(255, 196, 0, 0.81)", label: "Nüsse & Samen" },
-  { value: 40, color: "rgba(33, 150, 243, 0.8)", label: "Pflanzenöle" },
-  { value: 31, color: "rgba(244, 67, 54, 0.8)", label: "Zucker" },
-  { value: 29, color: "rgba(188, 30, 216, 0.8)", label: "Geflügel" },
-  { value: 28, color: "rgba(70, 184, 74, 0.8)", label: "Fisch" },
-  { value: 14, color: "rgba(255, 196, 0, 0.81)", label: "rotes Fleisch" },
-  { value: 13, color: "rgba(33, 150, 243, 0.8)", label: "Eier" },
-  { value: 7, color: "rgba(244, 67, 54, 0.8)", label: "Palmöl" },
-  { value: 5, color: "rgba(188, 30, 216, 0.8)", label: "tierisches Fett" },
+  { value: 300, color: "rgb(70, 184, 74)", label: "Gemüse" },
+  { value: 250, color: "rgb(255, 196, 0)", label: "Milchprodukte" },
+  { value: 232, color: "rgb(33, 150, 243)", label: "Vollkornprodukte" },
+  { value: 200, color: "rgb(244, 67, 54)", label: "Obst" },
+  { value: 75, color: "rgb(188, 30, 216)", label: "Hülsenfrüchte" },
+  { value: 50, color: "rgb(70, 184, 74)", label: "Wurzelgemüse" },
+  { value: 50, color: "rgb(255, 196, 0)", label: "Nüsse & Samen" },
+  { value: 40, color: "rgb(33, 150, 243)", label: "Pflanzenöle" },
+  { value: 31, color: "rgb(244, 67, 54)", label: "Zucker" },
+  { value: 29, color: "rgb(188, 30, 216)", label: "Geflügel" },
+  { value: 28, color: "rgb(70, 184, 74)", label: "Fisch" },
+  { value: 14, color: "rgb(255, 196, 0)", label: "rotes Fleisch" },
+  { value: 13, color: "rgb(33, 150, 243)", label: "Eier" },
+  { value: 7, color: "rgb(244, 67, 54)", label: "Palmöl" },
+  { value: 5, color: "rgb(188, 30, 216)", label: "tierisches Fett" },
 ];
 
 const north_america = [
