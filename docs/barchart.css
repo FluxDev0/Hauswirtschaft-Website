@@ -1,0 +1,50 @@
+#barChartContainer {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  align-items: flex-end;
+  display: flex;
+  height: 640px;
+  gap: 10px;
+  padding: 20px;
+  padding-bottom: 80px;
+}
+
+#barChartContainer:hover {
+  transform: none;
+}
+
+.bar {
+  position: relative;
+  margin: 0;
+  width: 80px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, height 1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar:hover {
+  transform: scale(1.05);
+}
+
+.bar span.label {
+  display: inline-block;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 20%;
+  font-size: 16px;
+  transform-origin: left top;
+  transform: rotate(30deg);
+  white-space: nowrap;
+  margin-top: 5px;
+}
+
+.bar span#barvalue {
+  position: relative;
+  top: -22px;
+  font-size: 16px;
+}

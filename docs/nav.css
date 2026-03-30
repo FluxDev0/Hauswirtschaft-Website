@@ -1,0 +1,61 @@
+nav.glass {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  gap: 0px;
+  width: var(--width);
+}
+
+nav.glass button {
+  z-index: 1;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  height: calc(100% - 8px);
+  background-color: transparent;
+  padding: 0px;
+  margin: 4px 4px;
+  border-radius: 25px;
+  transition: background-color 0.6s ease, font-size 0.3s ease, color 0.5s ease;
+  width: calc((100% / var(--buttons-per-row)) - 8px);
+}
+
+nav.glass button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+  transform: none;
+}
+
+nav.glass button.active:hover {
+  background-color: transparent;
+}
+
+.mnav {
+  --buttons-per-row: 5;
+  --width: calc(60% + 40px);
+}
+
+.regnav {
+  --buttons-per-row: 3;
+  --width: calc(60% + 40px);
+}
+
+nav.glass button.active {
+  color: rgb(0, 0, 0);
+}
+
+nav.glass #nav-indicator {
+  width: calc((100% / var(--buttons-per-row)) - 8px);
+}
+
+nav.glass #nav-indicator {
+  position: absolute;
+  z-index: 0;
+  bottom: 4px;
+  left: 4px;
+  height: calc(100% - 8px);
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  transition: transform 0.5s cubic-bezier(0.68, -0.3, 0.32, 1.3);
+}

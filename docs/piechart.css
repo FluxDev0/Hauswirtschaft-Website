@@ -1,0 +1,11 @@
+.piechart {
+  aspect-ratio: 1;
+  display: block;
+  margin: auto;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.piechart:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}

@@ -7,7 +7,7 @@ const mnav = document.querySelector("nav.mnav #nav-indicator");
 html = {
   "home": `
       <div class="info glass" id="content">
-        <h5>Eine Website über die Planetary Health Diet.</h5>
+        <h1>Eine Website über die Planetary Health Diet.</h5>
         <p>Klicke auf einen Abschnitt um mehr zu erfahren.</p>
       </div>
     `,
@@ -85,7 +85,7 @@ function setupnav(navclass, showelement) {
         this.classList.add("active");
         navindication(navclass, index);
         if (showelement) {
-          show(showelement, this.id);
+          show(showelement, this.dataset.show);
         };
       });
   });
