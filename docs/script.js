@@ -51,15 +51,31 @@ html = {
     `,
   "example": `
     <div class="info glass" id="content">
-      <p></p>
+      <ul>
+        <li>Zum Frühstück Haferbrei(Porridge) mit ein paar Nüssen.</li>
+        <li>Mittagessen: Linsenbolognese mit viel Gemüse und Berglinsen</li>
+        <li>Abendessen: Gemüsepfanne mit Kichererbsen, Vollkornbrot und Feta.</li>
+      </ul>
     </div>
-  `
+  `,
+  "settings": `
+    <div class="blur-overlay basic">
+      <p>Einstellungen</p>
+    </div>
+  `,
+  "void":``
 }
 
 extrafuncs = {
   "home": function() {setupnav("mnav", "placeholder");}, 
   "piechart": function() {show_piechart(phd); setupnav("regnav");},
-  "barchart": function() {show_barchart(phd); setupnav("regnav");}
+  "barchart": function() {show_barchart(phd); setupnav("regnav");},
+  "settings": function() {
+    document.getElementById("settings").onclick = function() {
+      show('settings-container', 'void');
+      document.getElementById("settings").onclick = function() {show('settings-container', 'settings');}
+    };
+  }
 };
 
 function show(id, contentname) {
@@ -89,6 +105,9 @@ function setupnav(navclass, showelement) {
         };
       });
   });
+  const nav = document.querySelector(`nav.${navclass}`);
+  nav.style.setProperty("--buttons-per-row", nav.children.length - 1);
+  console.log("nav." + navclass + " setup complete. Buttons found: " + nav.children.length - 1);
 }
 
 function navindication(navclass, index) {

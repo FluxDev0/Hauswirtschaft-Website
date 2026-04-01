@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planet Health Diet</title>
+  <title>Hauswirtschaft Website</title>
   <div id="css-links">
     <link id="normal-css" rel="stylesheet" href="desktop.css" media="screen and (min-width: 1501px)">
     <link id="mobile-css" rel="stylesheet" href="mobile.css" media="screen and (max-width: 1500px)">
@@ -17,9 +17,9 @@
   <div id="nav-indicator" style="transform: translateX(0%);"></div>
   <button data-show="home" class="active" title="Warum ist dein Cursor so lange hier?">Home</button>
   <button data-show="info">Was ist das?</button>
-  <button data-show="quiz">Quiz</button>
-  <button data-show="piechart">Kreisdiagramm</button>
+  <button data-show="example">Beispiel</button>
   <button data-show="barchart">Säulendiagramm</button>
+  <button data-show="quiz">Quiz</button>
 </nav>
 
 <div class="basic" id="placeholder"></div>
@@ -30,6 +30,10 @@
   <div class="blob" style="--anim1dur: 40s; --anim1del: -10s; --anim2dur: 40s; --anim2del: -5s;"></div>
   <div class="blob" style="--anim1dur: 40s; --anim1del: -15s; --anim2dur: 40s; --anim2del: -0s;"></div>
 </div>
+
+<button id="settings" class="glass" onclick="show('settings-container', 'settings')">Einstellungen</button>
+
+<div id="settings-container"></div>
 
 <script src="script.js"></script>
 

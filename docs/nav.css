@@ -1,3 +1,11 @@
+.mnav {
+  --width: calc(60% + 40px);
+}
+
+.regnav {
+  --width: calc(60% + 40px);
+}
+
 nav.glass {
   display: flex;
   justify-content: center;
@@ -27,22 +35,12 @@ nav.glass button:hover {
   transform: none;
 }
 
-nav.glass button.active:hover {
-  background-color: transparent;
-}
-
-.mnav {
-  --buttons-per-row: 5;
-  --width: calc(60% + 40px);
-}
-
-.regnav {
-  --buttons-per-row: 3;
-  --width: calc(60% + 40px);
-}
-
 nav.glass button.active {
   color: rgb(0, 0, 0);
+}
+
+nav.glass button.active:hover {
+  background-color: transparent;
 }
 
 nav.glass #nav-indicator {
