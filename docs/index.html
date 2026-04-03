@@ -24,14 +24,14 @@
 
 <div class="basic" id="placeholder"></div>
 
-<div class="background">
+<div class="background" id="animated-background">
   <div class="blob" style="--anim1dur: 40s; --anim1del: -0s; --anim2dur: 40s; --anim2del: -15s;"></div>
   <div class="blob" style="--anim1dur: 40s; --anim1del: -5s; --anim2dur: 40s; --anim2del: -10s;"></div>
   <div class="blob" style="--anim1dur: 40s; --anim1del: -10s; --anim2dur: 40s; --anim2del: -5s;"></div>
   <div class="blob" style="--anim1dur: 40s; --anim1del: -15s; --anim2dur: 40s; --anim2del: -0s;"></div>
 </div>
 
-<button id="settings" class="glass" onclick="show('settings-container', 'settings')">Einstellungen</button>
+<button id="settings" class="glass" onclick="click_settings(this)" data-active="false">Einstellungen</button>
 
 <div id="settings-container"></div>
 

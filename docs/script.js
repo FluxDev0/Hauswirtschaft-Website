@@ -1,3 +1,5 @@
+console.log("Script activated. :) pls dont mess with my code.");
+
 let score = 0;
 let answered = false;
 
@@ -59,23 +61,20 @@ html = {
     </div>
   `,
   "settings": `
-    <div class="blur-overlay basic">
-      <p>Einstellungen</p>
+    <div class="settings-overlay basic">
+      <h1>Einstellungen</h1>
+      <label>
+        Animated Background <input id="checkbox" type="checkbox" value="animated-background">
+      </label>
     </div>
   `,
+  "thanks":``,
   "void":``
 }
 
 extrafuncs = {
-  "home": function() {setupnav("mnav", "placeholder");}, 
   "piechart": function() {show_piechart(phd); setupnav("regnav");},
   "barchart": function() {show_barchart(phd); setupnav("regnav");},
-  "settings": function() {
-    document.getElementById("settings").onclick = function() {
-      show('settings-container', 'void');
-      document.getElementById("settings").onclick = function() {show('settings-container', 'settings');}
-    };
-  }
 };
 
 function show(id, contentname) {
@@ -84,6 +83,16 @@ function show(id, contentname) {
   if (extrafuncs[contentname]) {
     extrafuncs[contentname]();
   };
+}
+
+function click_settings(element) {
+  if (element.dataset.active === "false") {
+    show('settings-container', 'settings');
+    element.dataset.active = "true";
+  } else if (element.dataset.active === "true") {
+    show('settings-container', 'void');
+    element.dataset.active = "false";
+  }
 }
 
 function answer(correct) {
@@ -107,12 +116,12 @@ function setupnav(navclass, showelement) {
   });
   const nav = document.querySelector(`nav.${navclass}`);
   nav.style.setProperty("--buttons-per-row", nav.children.length - 1);
-  console.log("nav." + navclass + " setup complete. Buttons found: " + nav.children.length - 1);
+  console.log("nav." + navclass + " setup complete. Buttons found: " + nav.children.length);
 }
 
 function navindication(navclass, index) {
   const nav = document.querySelector("nav." + navclass + " #nav-indicator");
-  if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator not found. Please check where the nav went. If your reading this your probably a developer and if you arent your just meesing with the browser.")};
+  if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator not found. Please check where the nav went. If your reading this your probably a developer and if you arent your just messing with the browser. ;) dont mess with my code.")};
   nav.style.transform = `translateX(calc(${index} * (100% + 8px)))`;
 }
 
@@ -234,4 +243,5 @@ const europe = [
 ];
 
 //Startsetup
+setupnav("mnav", "placeholder")
 show("placeholder", "home");
