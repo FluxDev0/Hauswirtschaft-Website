@@ -66,6 +66,9 @@ html = {
       <label>
         Animated Background <input id="checkbox" type="checkbox" value="animated-background">
       </label>
+      <label>
+        Blur Effect <input id="checkbox" type="checkbox" value="blur-effect">
+      </label>
     </div>
   `,
   "thanks":``,
@@ -83,6 +86,17 @@ function show(id, contentname) {
   if (extrafuncs[contentname]) {
     extrafuncs[contentname]();
   };
+}
+
+function fade_out(element) {
+  element.style.animation = "fade-out 2.5s ease";
+  setTimeout(function() {
+    element.style.display = "none";
+  }, 2000);
+}
+
+function transition_tabs() {
+
 }
 
 function click_settings(element) {
@@ -123,6 +137,17 @@ function navindication(navclass, index) {
   const nav = document.querySelector("nav." + navclass + " #nav-indicator");
   if (!nav) {console.log(index); console.log("nav." + navclass + " #nav-indicator not found. Please check where the nav went. If your reading this your probably a developer and if you arent your just messing with the browser. ;) dont mess with my code.")};
   nav.style.transform = `translateX(calc(${index} * (100% + 8px)))`;
+}
+
+function funny_func() {
+  document.querySelectorAll('p, nav button').forEach((element) => {
+    if (element.id !== "placeholder")
+    element.addEventListener("click", function() {fade_out(element)});
+  });
+}
+
+function funny_func2(element) {
+  element.addEventListener("click", function() {fade_out(element)});
 }
 
 function show_piechart(data) {
@@ -245,3 +270,26 @@ const europe = [
 //Startsetup
 setupnav("mnav", "placeholder")
 show("placeholder", "home");
+
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener('mousemove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key.toLowerCase() === 'a') {
+    const elementUnterMaus = document.elementFromPoint(mouseX, mouseY);
+    if (elementUnterMaus) {
+      funny_func2(elementUnterMaus);
+    }
+  }
+  if (event.key.toLowerCase() === 'f') {
+    const elementUnterMaus = document.elementFromPoint(mouseX, mouseY);
+    if (elementUnterMaus) {
+      fade_out(elementUnterMaus);
+    }
+  }
+});
